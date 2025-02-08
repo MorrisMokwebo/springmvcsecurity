@@ -34,6 +34,7 @@ public class RegistrationController {
 
     @PostMapping("/processRegistration")
     public String registerUser(@ModelAttribute @Valid User user, BindingResult bindingResult){
+        System.out.println("User -> "+user.toString());
 
         if(bindingResult.hasErrors()){
             return "/showRegistrationForm";
@@ -49,7 +50,7 @@ public class RegistrationController {
 
         userService.save(user);
 
-        return "redirect:/login-form";
+        return "redirect:/showLoginForm";
     }
 
 
