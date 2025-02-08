@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService,UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -36,5 +36,10 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .password(passwordEncoder.encode(user.getPassword()))
                 .roles("USER")
                 .build();
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
     }
 }
