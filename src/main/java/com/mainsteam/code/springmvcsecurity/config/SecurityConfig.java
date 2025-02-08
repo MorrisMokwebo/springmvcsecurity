@@ -3,20 +3,27 @@ package com.mainsteam.code.springmvcsecurity.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(configuer ->
-                configuer.requestMatchers("/register","/login").permitAll()
-                        .anyRequest().authenticated()
-                );
+        http.authorizeHttpRequests(configure ->
+                        configure
+                                .requestMatchers("/showRegistrationForm","/processRegistration")
+                                .permitAll().anyRequest().hasRole("USER")
+                ).formLogin(formLogin->
+                formLogin.loginPage("/showLoginForm")
+                .loginProcessingUrl("/login") // todo: to add success handler
+                .permitAll()
+        );
 
         return http.build();
     }
