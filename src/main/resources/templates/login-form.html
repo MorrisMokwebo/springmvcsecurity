@@ -9,7 +9,7 @@
 <body>
 <div class="container m-3">
     <h2>User Registration</h2>
-    <form action="#" th:action="@{/login} " method="post" >
+    <form action="#" th:action="@{/preprocessingLoginCredentials} " method="post" >
 
 
         <div class="form-group">
@@ -21,8 +21,8 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-
+            <button type="submit" class="btn btn-primary">Login</button>
+            if you don not have an account, please sign up here <a th:href="@{/showRegistrationForm}">Sign up</a>
         </div>
     </form>
 
