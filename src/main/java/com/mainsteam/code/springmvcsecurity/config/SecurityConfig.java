@@ -21,7 +21,8 @@ public class SecurityConfig {
                                 .permitAll().anyRequest().hasRole("USER")
                 ).formLogin(formLogin->
                 formLogin.loginPage("/showLoginForm")
-                .loginProcessingUrl("/login") // todo: to add success handler
+                .loginProcessingUrl("/preprocessingLoginCredentials")
+                        .defaultSuccessUrl("/dashboard",true)
                 .permitAll()
         );
 
