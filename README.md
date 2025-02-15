@@ -1,5 +1,6 @@
 # springmvcsecurity
-* registrationn form
-* login form 
-* spring security 
+* User registration
+* User login  
+* spring security(authentication and authorisation)
+* postgres db
 * thymeleaf
