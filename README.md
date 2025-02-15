@@ -9,6 +9,3 @@
 * Thymeleaf, Bootstrap 4, HTML 5 
 * Postgress database.
 
-
-# Process Flow 
-* User registration ->  User log in -> success -> Dashboard 
