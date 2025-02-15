@@ -13,26 +13,24 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService,UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User  user = userRepository.findByUsername(username);
+        User  user = userRepository.findByEmail(username);
 
         if(user == null){
             throw new UsernameNotFoundException("Username not found");
         }
 
         return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUsername())
+                .username(user.getEmail())
                 .password(user.getPassword())
                 .roles("USER")
                 .build();
