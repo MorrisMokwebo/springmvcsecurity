@@ -1,6 +1,6 @@
 # springmvcsecurity
 
-#Tech stack 
+# Tech stack 
 
 * Spring Boot Web
 * Spring Data JPA
