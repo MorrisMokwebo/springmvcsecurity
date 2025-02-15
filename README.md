@@ -11,4 +11,4 @@
 
 
 # Process Flow 
-* User registration ->  User log in -> 
+* User registration ->  User log in -> success -> Dashboard 
