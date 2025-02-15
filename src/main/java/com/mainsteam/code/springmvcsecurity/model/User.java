@@ -14,10 +14,12 @@ public class User {
     private Long id;
 
     @NotNull
+    @Column(name = "first_name")
     @Size(min = 1,message = "first name should have more than one characters")
     private String firstName;
 
     @NotNull
+    @Column(name = "last_name")
     @Size(min = 1,message = "last name should have more than one characters")
     private String lastName;
 
@@ -27,6 +29,7 @@ public class User {
     private String email;
 
     @NotNull
+    @Column(name = "phone_number")
     @Size(max = 10, message = "phone numbers should have 10 digits")
     private String phoneNumber;
 
@@ -36,14 +39,20 @@ public class User {
     private String password;
 
     @NotNull
+    @Column(name = "confirmed_password")
     @Size(min = 1, message = "password should have more than one value")
     private String confirmPassword;
+
+    @Column(name = "verification_code",length = 64)
+    private String verificationCode;
+
+    private boolean enabled;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String email, String phoneNumber
-            , String password, String confirmPassword) {
+    public User(Long id, String firstName, String lastName, String email, String phoneNumber,
+                String password, String confirmPassword, String verificationCode, boolean enabled) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,6 +60,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.confirmPassword = confirmPassword;
+        this.verificationCode = verificationCode;
+        this.enabled = enabled;
     }
 
     public Long getId() {
@@ -109,6 +120,26 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getFullName(){
+        return getFirstName()+" "+getLastName();
+    }
+
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     @Override
     public String toString() {
@@ -120,6 +151,8 @@ public class User {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
+                ", verificationCode='" + verificationCode + '\'' +
+                ", enabled=" + enabled +
                 '}';
     }
 }
