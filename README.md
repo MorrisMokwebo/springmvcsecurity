@@ -1,6 +1,14 @@
 # springmvcsecurity
-* User registration
-* User login  
-* spring security(authentication and authorisation)
-* postgres db
-* thymeleaf
+
+#Tech stack 
+
+*Spring Boot Web
+*Spring Data JPA
+*Hibernate
+*Spring Security
+*Thymeleaf, Bootstrap 4, HTML 5 
+*Postgress database.
+
+
+#Flow 
+* User registration ->  User log in -> 
