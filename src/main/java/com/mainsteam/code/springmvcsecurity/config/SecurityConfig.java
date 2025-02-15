@@ -17,7 +17,8 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configure ->
                         configure
-                                .requestMatchers("/showRegistrationForm","/processRegistration")
+                                .requestMatchers("/showRegistrationForm",
+                                        "/processRegistration","/showPreLogin","/verify")
                                 .permitAll().anyRequest().hasRole("USER")
                 ).formLogin(formLogin->
                 formLogin.loginPage("/showLoginForm")

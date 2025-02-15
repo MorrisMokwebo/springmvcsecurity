@@ -1,6 +1,7 @@
 package com.mainsteam.code.springmvcsecurity.controller;
 
 import com.mainsteam.code.springmvcsecurity.model.User;
+import com.mainsteam.code.springmvcsecurity.service.EmailService;
 import com.mainsteam.code.springmvcsecurity.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +13,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.UUID;
+
 @Controller
 public class RegistrationController {
 
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
+    private final EmailService emailService;
 
     @Autowired
-    public RegistrationController(PasswordEncoder passwordEncoder, UserService userService) {
+    public RegistrationController(PasswordEncoder passwordEncoder, UserService userService, EmailService emailService) {
         this.passwordEncoder = passwordEncoder;
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/showRegistrationForm")
@@ -47,11 +52,18 @@ public class RegistrationController {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setConfirmPassword( passwordEncoder.encode(user.getConfirmPassword()));
+        user.setEnabled(false);
+        user.setVerificationCode(String.valueOf(UUID.randomUUID()));
 
         userService.save(user);
+        emailService.sendVerificationEmail(user);
 
-        return "redirect:/showLoginForm";
+        return "redirect:/showPreLogin";
     }
 
+    @GetMapping("/showPreLogin")
+    public String showPreLogin(){
+        return "pre-login";
+    }
 
 }
