@@ -30,9 +30,6 @@ public class User {
     @Size(max = 10, message = "phone numbers should have 10 digits")
     private String phoneNumber;
 
-    @NotNull
-    @Size(min = 1, message = "username should have more that one characters")
-    private String username;
 
     @NotNull
     @Size(min = 1, message = "password should have more than one value")
@@ -45,14 +42,13 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String email, String phoneNumber,
-                String username, String password, String confirmPassword) {
+    public User(Long id, String firstName, String lastName, String email, String phoneNumber
+            , String password, String confirmPassword) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.username = username;
         this.password = password;
         this.confirmPassword = confirmPassword;
     }
@@ -97,14 +93,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -130,7 +118,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
