@@ -1,5 +1,5 @@
 # springmvcsecurity
-registrationn form
-login form 
-spring security 
-thymeleaf
+* registrationn form
+* login form 
+* spring security 
+* thymeleaf
